@@ -23,6 +23,30 @@ export const fetchSinglePlayer = async (playerId) => {
   }
 };
 
-export const addNewPlayer = async (playerObj) => {};
+export const addNewPlayer = async (playerObj) => {
+  try {
+    const response = await fetch(`${APIURL}/players`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(playerObj),
+    });
+    const result = await response.json();
+    return result;
+  } catch (e) {
+    console.log("Error", e);
+  }
+};
 
-export const removePlayer = async (playerId) => {};
+export const removePlayer = async (playerId) => {
+  try {
+    const response = await fetch(`${APIURL}/players/${playerId}`, {
+      method: "DELETE",
+    });
+    const result = await response.json();
+    return result;
+  } catch (e) {
+    console.log("Error", e);
+  }
+};
